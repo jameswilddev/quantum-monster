@@ -119,7 +119,7 @@ TODO - reset, power filtering
 [5]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, 10.4 External Reset"
 [6]: <https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf> "PCD8544 datasheet, 1 FEATURES"
 [7]: <https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf> "PCD8544 datasheet, 7.5 Display address counter"
-[8]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, "9.1 Sleep Modes"
+[8]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, 9.1 Sleep Modes"
 [9]: <http://ww1.microchip.com/downloads/en/devicedoc/atmel-0856-avr-instruction-set-manual.pdf> "AVR Instruction Set Manual, 71. MUL - Multiply Unsigned"
 [10]: <http://ww1.microchip.com/downloads/en/devicedoc/atmel-0856-avr-instruction-set-manual.pdf> "AVR Instruction Set Manual, 70. LD – Load Indirect from Data Space to Register using Index X & 71. LD (LDD) – Load Indirect from Data Space to Register using Index Y & 72. LD (LDD) – Load Indirect From Data Space to Register using Index Z"
 [11]: <http://ww1.microchip.com/downloads/en/devicedoc/atmel-0856-avr-instruction-set-manual.pdf> "AVR Instruction Set Manual, 118. ST – Store Indirect From Register to Data Space using Index X & 119. ST (STD) – Store Indirect From Register to Data Space using Index Y & 120. ST (STD) – Store Indirect From Register to Data Space using Index Z"
