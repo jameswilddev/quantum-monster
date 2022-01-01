@@ -1,4 +1,4 @@
-# [Quantumon](../readme.md) > Hardware Design Notes
+# [Quantum Monster](../readme.md) > Hardware Design Notes
 
 ## Components
 
@@ -88,7 +88,7 @@ A 32768Hz resonator is [connected to the microcontroller's `TOSC1` and `TOSC2` p
 
 [Additional reading regarding resonator selection][19].
 
-## Display interfacing 
+## Display interfacing
 
 TODO
 

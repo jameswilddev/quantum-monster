@@ -1,4 +1,4 @@
-# Quantumon
+# Quantum Monster
 
 ## Documentation
 
