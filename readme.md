@@ -104,6 +104,14 @@ TODO
 
 TODO
 
+## IR
+
+TODO
+
+## Buzzer
+
+TODO
+
 ## Assembly and configuration
 
 TODO
