@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include "../target.h"
 
 void qm_speaker_mute()
 {
@@ -11,10 +12,10 @@ void qm_speaker_mute()
   // TODO: do we need to write it low too?
 }
 
-void qm_speaker_play(speaker_pitch_t pitch)
+void qm_speaker_play(qm_speaker_pitch_t pitch)
 {
   // Out-of-range values won't make audible sound anyway.
-  if (pitch < SPEAKER_PITCH_MIN || pitch > SPEAKER_PITCH_MAX)
+  if (pitch < QM_SPEAKER_PITCH_MIN || pitch > QM_SPEAKER_PITCH_MAX)
   {
     qm_speaker_mute();
   }
