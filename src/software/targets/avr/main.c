@@ -1,8 +1,8 @@
 #include <avr/io.h>
 #include "../target.h"
-#include "../applications/application.h"
+#include "../../applications/application.h"
 
-static int main()
+int main()
 {
   // Configure the speaker timer to oscillate between 0 and OCR0A, inverting the speaker pin each time it does so (but do not connect a clock source).
   TCCR0A |= (1 << WGM00) | (1 << COM0A0);
