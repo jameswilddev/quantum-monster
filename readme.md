@@ -118,7 +118,30 @@ TODO
 
 ## Possible cost optimizations
 
-TODO - reset, power filtering
+The circuit design opts to include many optional components which may be eliminated to reduce cost and complexity.
+
+### Power Filtering
+
+Having both `C2` and `C3` may be unnecessary; the device would likely still work with only `C2`, especially with `L1` removed.  This was added to follow the [EMC Design Considerations][20]; `L1`'s value was taken from the [ADC Power Connections section of the AVR datasheet][21] as no other specifications of a series inductor's value could be found.
+
+### Reset
+
+`R1`, `D1` and `C1` were added based on [Atmel's recommendations for implementing external reset][22].  `R2` was added as [a consequence of combining these recommendations with a reset button][23].
+
+It is unlikely that this level of hardening is strictly necessary; these parts can most likely be omitted as [the reset pin includes an internal pull-up resistor][24].
+
+### ICSP
+
+Most inexpensive AVR programmers on the market can only signal at +5VDC, and worse, often mislead the customer by offering a `VCC` +5VDC/+3.3VDC switch (which only affects `VCC`, not `SCK` or `MOSI`).  Attempting to use +5VDC signalling to program the microcontroller will exceed the [absolute maximum ratings if it is running at +3.3VDC][25]. To protect against this, `R3`, `R4`, `R5` and `R6` form two pairs of voltage dividers which drop the +5VDC of `SCK` and `MOSI` down to +3.3VDC.
+
+No other ICSP pins include such dividers as:
+
+- `MISO` is driven by the microcontroller, not the programmer.
+- `RESET` is permitted to be as [high as +13VDC][25], regardless of `VCC`.
+
+If the microcontroller is programmed in-circuit before any +5VDC intolerant parts (such as, but not limited to, the display) these resistors can be omitted (but will need to be bridged to avoid open circuit on these lines).
+
+If the microcontroller is pre-programmed out-of-circuit, `J1`, `R3`, `R4`, `R5` and `R6` can all be omitted.
 
 [1]: <https://www.arduino.cc/en/pmwiki.php?n=Main/arduinoBoardUno> "Arduino Uno - Overview"
 [2]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, Features"
@@ -139,3 +162,9 @@ TODO - reset, power filtering
 [17]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, Figure 8-2. Crystal Oscillator Connections"
 [18]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, 17.10 Timer/Counter Prescaler"
 [19]: <http://ww1.microchip.com/downloads/en/Appnotes/AN2648-Selecting_Testing-32KHz-Crystal-Osc-for-AVR-MCUs-00002648B.pdf> "Selecting and Testing 32 KHz Crystal Oscillators for AVR® Microcontrollers"
+[20]: <http://ww1.microchip.com/downloads/en/appnotes/atmel-1619-emc-design-considerations_applicationnote_avr040.pdf> "AVR040: EMC Design Considerations, Figure 4-3. Decoupling with Series Inductor"
+[21]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf#G1203819> "AVR Instruction Set Manual, Figure 23-9. ADC Power Connections"
+[22]: <http://ww1.microchip.com/downloads/en/AppNotes/00002519A.pdf> "AVR® Microcontroller Hardware Design Considerations, Figure 3-1. Recommended Reset Pin Connection"
+[23]: <http://ww1.microchip.com/downloads/en/AppNotes/00002519A.pdf> "AVR® Microcontroller Hardware Design Considerations, Figure 3-2. Switch Connection for Reset Pin"
+[24]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, 28.2 DC Characteristics (Continued)"
+[25]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, 28.1 Absolute Maximum Ratings"
