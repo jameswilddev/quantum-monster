@@ -1,0 +1,21 @@
+on: [push]
+
+jobs:
+  make:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - run: make
+    - uses: nerdyscout/kicad-exports@v2.3
+      with:
+        config: docs.schema.kibot.yaml compress.documentation.kibot.yaml gerbers.kibot.yaml gerbers.drills.kibot.yaml jlcpcb/bom.csv.kibot.yaml compress.fabrications.kibot.yaml boardview.kibot.yaml
+        schema: 'src/hardware/quantum_monster.sch'
+        board: 'src/hardware/quantum_monster.kicad_pcb'
+    - uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          *.zip
+          dist/avr/*.hex
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
