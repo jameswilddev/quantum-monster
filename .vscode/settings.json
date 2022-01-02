@@ -10,6 +10,8 @@
   "files.exclude": {
     "fp-info-cache": true,
     "*.sch-bak": true,
-    "*.kicad_pcb-bak": true
+    "*.kicad_pcb-bak": true,
+    "dist": true,
+    "obj": true
   }
 }
