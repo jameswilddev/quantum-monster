@@ -1,5 +1,6 @@
 fp-info-cache
 *.sch-bak
 *.kicad_pcb-bak
+_autosave-*
 dist
 obj

@@ -11,6 +11,7 @@
     "fp-info-cache": true,
     "*.sch-bak": true,
     "*.kicad_pcb-bak": true,
+    "_autosave-*": true,
     "dist": true,
     "obj": true
   }
