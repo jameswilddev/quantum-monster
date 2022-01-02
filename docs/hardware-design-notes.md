@@ -124,20 +124,24 @@ The circuit design opts to include many optional components which may be elimina
 
 Having both `C2` and `C3` may be unnecessary; the device would likely still work with only `C2`, especially with `L1` removed.  This was added to follow the [EMC Design Considerations][20]; `L1`'s value was taken from the [ADC Power Connections section of the AVR datasheet][21] as no other specifications of a series inductor's value could be found.
 
+#### Infrared Receiver
+
+`R9` and `C5` form the power filtering hardware [recommended by the infrared receiver's datasheet][22].  They seem unusually overspecified.  It seems likely that the filtering used by the microcontroller would be sufficient.
+
 ### Reset
 
-`R1`, `D1` and `C1` were added based on [Atmel's recommendations for implementing external reset][22].  `R2` was added as [a consequence of combining these recommendations with a reset button][23].
+`R1`, `D1` and `C1` were added based on [Atmel's recommendations for implementing external reset][23].  `R2` was added as [a consequence of combining these recommendations with a reset button][24].
 
-It is unlikely that this level of hardening is strictly necessary; these parts can most likely be omitted as [the reset pin includes an internal pull-up resistor][24].
+It is unlikely that this level of hardening is strictly necessary; these parts can most likely be omitted as [the reset pin includes an internal pull-up resistor][25].
 
 ### ICSP
 
-Most inexpensive AVR programmers on the market can only signal at +5VDC, and worse, often mislead the customer by offering a `VCC` +5VDC/+3.3VDC switch (which only affects `VCC`, not `SCK` or `MOSI`).  Attempting to use +5VDC signalling to program the microcontroller will exceed the [absolute maximum ratings if it is running at +3.3VDC][25]. To protect against this, `R3`, `R4`, `R5` and `R6` form two pairs of voltage dividers which drop the +5VDC of `SCK` and `MOSI` down to +3.3VDC.
+Most inexpensive AVR programmers on the market can only signal at +5VDC, and worse, often mislead the customer by offering a `VCC` +5VDC/+3.3VDC switch (which only affects `VCC`, not `SCK` or `MOSI`).  Attempting to use +5VDC signalling to program the microcontroller will exceed the [absolute maximum ratings if it is running at +3.3VDC][26]. To protect against this, `R3`, `R4`, `R5` and `R6` form two pairs of voltage dividers which drop the +5VDC of `SCK` and `MOSI` down to +3.3VDC.
 
 No other ICSP pins include such dividers as:
 
 - `MISO` is driven by the microcontroller, not the programmer.
-- `RESET` is permitted to be as [high as +13VDC][25], regardless of `VCC`.
+- `RESET` is permitted to be as [high as +13VDC][26], regardless of `VCC`.
 
 If the microcontroller is programmed in-circuit before any +5VDC intolerant parts (such as, but not limited to, the display) these resistors can be omitted (but will need to be bridged to avoid open circuit on these lines).
 
@@ -165,6 +169,7 @@ If the microcontroller is pre-programmed out-of-circuit, `J1`, `R3`, `R4`, `R5` 
 [20]: <http://ww1.microchip.com/downloads/en/appnotes/atmel-1619-emc-design-considerations_applicationnote_avr040.pdf> "AVR040: EMC Design Considerations, Figure 4-3. Decoupling with Series Inductor"
 [21]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf#G1203819> "AVR Instruction Set Manual, Figure 23-9. ADC Power Connections"
 [22]: <http://ww1.microchip.com/downloads/en/AppNotes/00002519A.pdf> "AVR® Microcontroller Hardware Design Considerations, Figure 3-1. Recommended Reset Pin Connection"
+[22]: <http://www.datasheet-pdf.com/PDF/TL1838-Datasheet-Evercolors-790877> "EVERCOLORS TL1838 Datasheet, Application Circuit"
 [23]: <http://ww1.microchip.com/downloads/en/AppNotes/00002519A.pdf> "AVR® Microcontroller Hardware Design Considerations, Figure 3-2. Switch Connection for Reset Pin"
 [24]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, 28.2 DC Characteristics (Continued)"
 [25]: <https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf> "ATmega328P datasheet, 28.1 Absolute Maximum Ratings"
