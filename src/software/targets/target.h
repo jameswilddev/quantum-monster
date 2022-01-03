@@ -170,7 +170,7 @@ typedef uint8_t qm_display_effect_t;
 /**
  * The display is to be "inverted"; white becomes black and vice-versa.
  */
-#define QM_DISPLAY_EFFECT_BLANK_BLACK 3
+#define QM_DISPLAY_EFFECT_INVERTED 3
 
 /**
  * Sets the column index to which the next write will be performed.
@@ -190,7 +190,10 @@ void qm_display_row(qm_display_row_index_t row);
 typedef uint8_t qm_display_mode_t;
 
 /**
- * The display is to be turned off.  All state (pixels, position, effects, etc.) are lost.
+ * The display is to be turned off.  This is the default state.  All other state is lost:
+ * - The QM_DISPLAY_EFFECT_BLANK_WHITE effect is applied.
+ * - The current column and row are reset to 0.
+ * - All pixels are white.
  */
 #define QM_DISPLAY_MODE_OFF 0
 
