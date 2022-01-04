@@ -43,9 +43,9 @@ TODO serial port speed
 
 ## Real-time clock
 
-A 32768Hz resonator is [connected to the microcontroller's `TOSC1` and `TOSC2` pins][12].  [The maximum prescaler of 1/1024][13] is used to reduce this to 32Hz.  Timer 2 is configured to overflow after 32 clock cycles (making it effectively 1Hz), with an interrupt.  This interrupt's handler then updates `R2`, `R3` and `R4` to reflect the resulting time before returning.
+A 32.768kHz crystal is [connected to the microcontroller's `TOSC1` and `TOSC2` pins][12].  [A prescaler of 1/128][13] is used to reduce this to 256Hz.  Timer 2 overflows every 256 ticks (making it effectively 1Hz), triggering an interrupt which increments in-memory hour/minute/second counters as appropriate.
 
-[Additional reading regarding resonator selection][14].
+[Additional reading regarding crystal selection][14].
 
 ## Display interfacing
 
