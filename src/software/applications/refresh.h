@@ -10,4 +10,4 @@
  *        TODO: what happens on return
  *        TODO: how are short delays achieved?
  */
-void qm_refresh();
+extern void qm_refresh();
