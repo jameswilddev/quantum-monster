@@ -1,0 +1,7 @@
+#ifndef QM_TARGET_INFRARED_RECEIVER_H
+
+#define QM_TARGET_INFRARED_RECEIVER_H
+
+// TODO
+
+#endif

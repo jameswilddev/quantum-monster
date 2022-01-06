@@ -1,7 +1,0 @@
-#ifndef QM_TARGET_INFRARED_INPUT_H
-
-#define QM_TARGET_INFRARED_INPUT_H
-
-// TODO
-
-#endif
