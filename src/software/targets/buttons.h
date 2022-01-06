@@ -1,6 +1,6 @@
-#ifndef QM_TARGET_BUTTON_H
+#ifndef QM_TARGET_BUTTONS_H
 
-#define QM_TARGET_BUTTON_H
+#define QM_TARGET_BUTTONS_H
 
 #include <stdint.h>
 
