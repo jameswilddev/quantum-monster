@@ -5,11 +5,6 @@
 #include <stdint.h>
 
 /**
- * @brief The state of the speaker; see qm_speaker_state, QM_SPEAKER_STATE_MUTE, QM_SPEAKER_STATE_TONE_MINUMUM and QM_SPEAKER_STATE_TONE_MAXIMUM.
- */
-extern qm_speaker_state_t qm_speaker_state;
-
-/**
  * @brief The number of bytes of eventually non-volatile storage.
  */
 #define QM_STORAGE_BYTES 1024
