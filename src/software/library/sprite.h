@@ -5,24 +5,96 @@
 #include <stdint.h>
 
 /**
+ * @brief The width of a sprite, in columns.
+ */
+typedef uint8_t qm_sprite_width_t;
+
+/**
+ * @brief The height of a sprite, in rows.
+ */
+typedef uint8_t qm_sprite_height_t;
+
+/**
+ * @brief The offset of a sprite on the X axis.  When 0, the left edge of the sprite is on the origin.  When less than 0, the left edge of the sprite is left of the origin.  When greater than 0, the left edge of the sprite is right of the origin.
+ */
+typedef int8_t qm_sprite_x_offset_t;
+
+/**
+ * @brief The offset of a sprite on the Y axis.  When 0, the top edge of the sprite is on the origin.  When less than 0, the top edge of the sprite is above the origin.  When greater than 0, the top edge of the sprite is below the origin.
+ */
+typedef int8_t qm_sprite_y_offset_t;
+
+/**
+ * @brief The encoding of a sprite; see QM_SPRITE_ENCODING_*.
+ */
+typedef uint8_t qm_sprite_encoding_t;
+
+/**
+ * @brief The entire sprite is black.  The data is empty.
+ */
+#define QM_SPRITE_ENCODING_BLACK 0
+
+/**
+ * @brief The entire sprite is white.  The data is empty.
+ */
+#define QM_SPRITE_ENCODING_WHITE 1
+
+/**
+ * @brief The sprite is black and white (without transparency); data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is black and 1 is white.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are undefined.
+ */
+#define QM_SPRITE_ENCODING_BLACK_AND_WHITE 2
+
+/**
+ * @brief The sprite is black and transparent; data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is black and 1 is transparent.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are 1.
+ */
+#define QM_SPRITE_ENCODING_BLACK_AND_TRANSPARENT 3
+
+/**
+ * @brief The sprite is white and transparent; data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is transparent and 1 is white.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are 0.
+ */
+#define QM_SPRITE_ENCODING_WHITE_AND_TRANSPARENT 4
+
+/**
+ * @brief The sprite is black, white and transparent; data is sized 2 * width * height / 8 (rounded up).  Each pair of bytes describes two bit planes of a horizontal run of 8 pixels.  The first byte defines a mask, where 0 bits are black and 1 bits are transparent.  The second byte defines a XOR mask, where 0 bits do not invert the result, and 1 bits invert the result.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final bytes on a row are 0.
+ */
+#define QM_SPRITE_ENCODING_BLACK_WHITE_AND_TRANSPARENT 5
+
+/**
  * @brief Describes a sprite which can be drawn to the display.
  */
 typedef struct {
   /**
-   * @brief The width of the sprite, in columns.  Always divisible by 8.
+   * @brief The width of the sprite, in columns.
    */
-  uint8_t width;
+  qm_sprite_width_t width;
 
   /**
    * @brief The height of the sprite, in rows.
    */
-  uint8_t height;
+  qm_sprite_height_t height;
 
   /**
-   * @brief The sprite's pixel data, sized width * height / 8.  Each byte describes a horizontal run of 8 single-bit pixels, where the least significant bit is leftmost and the most significant bit is rightmost.  Bytes run from left to right, then top to bottom.  See qm_display_mode/QM_DISPLAY_MODE_* for details on bit to color mapping.
+   * @brief The offset of a sprite on the X axis.  When 0, the left edge of the sprite is on the origin.  When less than 0, the left edge of the sprite is left of the origin.  When greater than 0, the left edge of the sprite is right of the origin.
+   */
+  qm_sprite_x_offset_t x_offset;
+
+  /**
+   * @brief The offset of a sprite on the Y axis.  When 0, the top edge of the sprite is on the origin.  When less than 0, the top edge of the sprite is above the origin.  When greater than 0, the top edge of the sprite is below the origin.
+   */
+  qm_sprite_y_offset_t y_offset;
+
+  /**
+   * @brief The encoding of the sprite; see QM_SPRITE_ENCODING_*.
+   */
+  qm_sprite_encoding_t encoding;
+
+  /**
+   * @brief The sprite's pixel data; see encoding and QM_SPRITE_ENCODING_*.
    */
   uint8_t pixels[];
 } qm_sprite_t;
+
+qm_sprite_t something = {};
 
 /**
  * @brief The distance between the left edge of the sprite and that of the display, in columns.  When less than zero, the sprite's left edge is left of that of the display.
