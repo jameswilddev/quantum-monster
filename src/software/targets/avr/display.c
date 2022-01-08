@@ -7,9 +7,7 @@
 
 static qm_display_mode_t qm_target_avr_display_previous_mode = QM_DISPLAY_MODE_OFF;
 
-const uint8_t qm_display_width = 48;
-const uint8_t qm_display_height = 84;
-uint8_t qm_display_pixels[48 * 84 / 8];
+uint8_t qm_display_pixels[QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8];
 qm_display_mode_t qm_display_mode = QM_DISPLAY_MODE_OFF;
 
 static void qm_target_avr_display_wait_until_ready_for_next_byte()
@@ -46,7 +44,7 @@ static void qm_target_avr_display_blit()
 {
   qm_target_avr_display_data_mode();
 
-  for (int i = 0; i < qm_display_width * qm_display_height / 8; i++) {
+  for (int i = 0; i < QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8; i++) {
     uint8_t next = qm_display_pixels[i];
 
     qm_target_avr_display_start_writing_byte(next);
@@ -57,7 +55,7 @@ static void qm_target_avr_display_clear()
 {
   qm_target_avr_display_data_mode();
 
-  for (int i = 0; i < qm_display_width * qm_display_height / 8; i++) {
+  for (int i = 0; i < QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8; i++) {
     qm_target_avr_display_start_writing_byte(0);
   }
 }
