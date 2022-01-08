@@ -94,8 +94,6 @@ typedef struct {
   uint8_t pixels[];
 } qm_sprite_t;
 
-qm_sprite_t something = {};
-
 /**
  * @brief The distance between the left edge of the sprite and that of the display, in columns.  When less than zero, the sprite's left edge is left of that of the display.
  */
