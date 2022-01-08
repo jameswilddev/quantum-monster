@@ -15,7 +15,7 @@ extern const uint8_t qm_display_width;
 extern const uint8_t qm_display_height;
 
 /**
- * @brief The pixel data which will be shown on the display when qm_refresh() returns, sized qm_display_width * qm_display_height / 8.  Each byte describes a horizontal run of 8 single-bit pixels, where the least significant bit is leftmost and the most significant bit is rightmost.  Bytes run from left to right, then top to bottom.  See qm_display_mode/QM_DISPLAY_MODE_* for details on bit to color mapping.  Initially zero-filled.
+ * @brief The pixel data which will be shown on the display when qm_refresh() returns, sized qm_display_width * qm_display_height / 8.  Each byte describes a horizontal run of 8 single-bit pixels, where the least significant bit is leftmost and the most significant bit is rightmost.  Bytes run from left to right, then top to bottom.  See qm_display_mode/QM_DISPLAY_MODE_* for details on bit to color mapping.  Initially zero-filled.  The pixel aspect ratio is 5:4 (the width of a pixel is 125% of its height).
  */
 extern uint8_t qm_display_pixels[];
 
