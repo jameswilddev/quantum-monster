@@ -4,3 +4,14 @@ fp-info-cache
 _autosave-*
 dist
 obj
+*.aseprite.*
+*.jpg.*
+*.jpeg.*
+*.png.*
+*.tga.*
+*.bmp.*
+*.psd.*
+*.gif.*
+*.hdr.*
+*.pic.*
+*.pnm.*

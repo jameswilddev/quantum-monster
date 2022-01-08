@@ -13,6 +13,17 @@
     "*.kicad_pcb-bak": true,
     "_autosave-*": true,
     "dist": true,
-    "obj": true
+    "obj": true,
+    "*.aseprite.*": true,
+    "*.jpg.*": true,
+    "*.jpeg.*": true,
+    "*.png.*": true,
+    "*.tga.*": true,
+    "*.bmp.*": true,
+    "*.psd.*": true,
+    "*.gif.*": true,
+    "*.hdr.*": true,
+    "*.pic.*": true,
+    "*.pnm.*": true
   }
 }
