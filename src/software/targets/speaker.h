@@ -5,18 +5,18 @@
 #include <stdint.h>
 
 /**
- * @brief A state of the speaker; see qm_speaker_state and QM_SPEAKER_STATE_*.
+ * @brief A frequency, in Hertz, for the speaker to produce.  See QM_SPEAKER_FREQUENCY_* and qm_speaker_frequency.
  */
-typedef uint8_t qm_speaker_state_t;
+typedef uint16_t qm_speaker_frequency_t;
 
 /**
  * @brief The speaker is to stop producing sound.
  */
-#define QM_SPEAKER_STATE_MUTED 0
+#define QM_SPEAKER_FREQUENCY_MUTED 0
 
 /**
- * @brief The state of the speaker.  Changes are applied after qm_refresh() returns.  The default value is QM_SPEAKER_STATE_MUTED.  See QM_SPEAKER_STATE_*.
+ * @brief The frequency at which the speaker is to produce a square wave.  Set to zero (the default value) to mute the speaker.  Changes are applied after qm_refresh() returns.
  */
-extern qm_speaker_state_t qm_speaker_state;
+extern qm_speaker_frequency_t qm_speaker_frequency;
 
 #endif
