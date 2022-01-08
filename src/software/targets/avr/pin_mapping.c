@@ -67,5 +67,5 @@ extern void qm_target_avr_pin_mapping_initialize()
   DDRC = temp_DDRC;
   PORTC = temp_PORTC;
   DDRD = temp_DDRD;
-  PORTD = temp_PORTB;
+  PORTD = temp_PORTD;
 }
