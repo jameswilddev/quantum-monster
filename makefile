@@ -5,7 +5,7 @@ LIBRARY_C_FILES = $(shell find src/software/library -name "*.c")
 APPLICATION_C_FILES = $(shell find src/software/applications -name "*.c")
 
 AVR_CC = avr-gcc
-AVR_CFLAGS = -Wall -O2 -mmcu=atmega328p
+AVR_CFLAGS = -Wall -O2 -mmcu=atmega328p -DQM_STATIC_DATA=PROGMEM
 AVR_LDFLAGS =
 AVR_DISTRIBUTABLES = $(addsuffix .hex,$(addprefix dist/avr/,$(APPLICATION_NAMES)))
 AVR_C_FILES = $(shell find src/software/targets/avr -name "*.c")
