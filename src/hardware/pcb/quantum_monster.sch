@@ -228,15 +228,13 @@ F 3 "" H 6700 4750 50  0001 C CNN
 	1    6700 4750
 	1    0    0    -1  
 $EndComp
-Text GLabel 7300 4050 2    50   Output ~ 0
+Text GLabel 7300 4250 2    50   Output ~ 0
 DISPLAY_DATA_COMMAND
-Text GLabel 7300 3950 2    50   Output ~ 0
-DISPLAY_RESET
 Text GLabel 7300 4350 2    50   Output ~ 0
 SPEAKER
-Text GLabel 7300 2950 2    50   Input ~ 0
+Text GLabel 8150 2600 2    50   Input ~ 0
 A_BUTTON
-Text GLabel 7300 3050 2    50   Input ~ 0
+Text GLabel 8350 2800 2    50   Input ~ 0
 B_BUTTON
 Text GLabel 7300 3150 2    50   Input ~ 0
 C_BUTTON
@@ -484,7 +482,6 @@ Text Notes 550  600  0    50   ~ 0
 RESET
 Wire Wire Line
 	1000 1250 950  1250
-Connection ~ 1000 1950
 Wire Wire Line
 	1400 1950 1000 1950
 Wire Wire Line
@@ -596,28 +593,6 @@ F 3 "" H 1950 4600 50  0001 C CNN
 $EndComp
 Connection ~ 1000 1250
 Connection ~ 1400 1250
-$Comp
-L Switch:SW_SPST SW1
-U 1 1 61D00CAA
-P 1000 1750
-F 0 "SW1" V 954 1848 50  0000 L CNN
-F 1 "RESET" V 1045 1848 50  0000 L CNN
-F 2 "Button_Switch_THT:SW_TH_Tactile_Omron_B3F-10xx" H 1000 1750 50  0001 C CNN
-F 3 "~" H 1000 1750 50  0001 C CNN
-	1    1000 1750
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R2
-U 1 1 61CFFBE6
-P 1000 1400
-F 0 "R2" H 930 1354 50  0000 R CNN
-F 1 "330R" H 930 1445 50  0000 R CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 930 1400 50  0001 C CNN
-F 3 "~" H 1000 1400 50  0001 C CNN
-	1    1000 1400
-	-1   0    0    1   
-$EndComp
 $Comp
 L Device:C C1
 U 1 1 61CFF275
@@ -769,5 +744,29 @@ Wire Notes Line
 	4050 650  1950 650 
 Text Notes 1950 600  0    50   ~ 0
 POWER
-NoConn ~ 7300 3750
+Text GLabel 7300 3050 2    50   Output ~ 0
+DISPLAY_RESET
+$Comp
+L Device:R R2
+U 1 1 61CFFBE6
+P 1000 1800
+F 0 "R2" H 930 1754 50  0000 R CNN
+F 1 "330R" H 930 1845 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 930 1800 50  0001 C CNN
+F 3 "~" H 1000 1800 50  0001 C CNN
+	1    1000 1800
+	-1   0    0    1   
+$EndComp
+Connection ~ 1000 1950
+$Comp
+L Switch:SW_SPST SW1
+U 1 1 61D00CAA
+P 1000 1450
+F 0 "SW1" V 954 1548 50  0000 L CNN
+F 1 "RESET" V 1045 1548 50  0000 L CNN
+F 2 "Button_Switch_THT:SW_TH_Tactile_Omron_B3F-10xx" H 1000 1450 50  0001 C CNN
+F 3 "~" H 1000 1450 50  0001 C CNN
+	1    1000 1450
+	0    1    -1   0   
+$EndComp
 $EndSCHEMATC
