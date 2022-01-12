@@ -51,12 +51,12 @@
 /**
  * @brief The letter of the port through which the speaker is connected.  Note that this uses hardware PWM and so changes will be required in speaker.c should this change.
  */
-#define QM_TARGET_AVR_PIN_MAPPING_SPEAKER_PORT_LETTER D
+#define QM_TARGET_AVR_PIN_MAPPING_SPEAKER_PORT_LETTER B
 
 /**
  * @brief The number of the pin through which the speaker is connected.  Note that this uses hardware PWM and so changes will be required in speaker.c should this change.
  */
-#define QM_TARGET_AVR_PIN_MAPPING_SPEAKER_PIN_NUMBER 5
+#define QM_TARGET_AVR_PIN_MAPPING_SPEAKER_PIN_NUMBER 1
 
 
 /**

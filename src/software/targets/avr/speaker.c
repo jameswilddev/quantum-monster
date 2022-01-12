@@ -7,25 +7,26 @@ qm_speaker_frequency_t qm_speaker_frequency = QM_SPEAKER_FREQUENCY_MUTED;
 void qm_target_avr_speaker_initialize()
 {
   // Configure timer 0 to count from 0 to OCR0A and back down to 0, toggling OC0B (pin D5) each time it does.
-  TCCR0A = (1 << WGM01) | (1 << COM0B0);
+  TCCR1A = (1 << COM1A0);
+  TCCR1B = (1 << WGM12);
 }
 
 void qm_target_avr_speaker_post_update()
 {
-  int frequency = 62500 / qm_speaker_frequency;
+  int frequency = (uint32_t)4000000 / qm_speaker_frequency;
 
-  if (frequency < 1 || frequency > 255) {
-    // Disconnect the CPU clock from timer 0.
-    TCCR0B = 0;
+  if (frequency < 1 || frequency > 65535) {
+    // Disconnect the CPU clock from timer 1.
+      TCCR1B = (1 << WGM12);
     // TODO: does this lower the pin?
   } else {
 
 
-    // Connect timer 0 to the CPU clock through a 1/64 prescaler, making it tick at 125kHz.
-    TCCR0B = (1 << CS00) | (1 << CS01);
+    // Connect timer 1 to the CPU clock.
+    TCCR1B = (1 << WGM12) | (1 << CS10);
 
 // TODO: why does this need to come second
     // TODO: calculate correctly
-    OCR0A = frequency;
+    OCR1A = frequency;
   }
 }
