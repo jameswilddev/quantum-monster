@@ -1,6 +1,6 @@
-#ifndef QM_TARGET_STORAGE_H
+#ifndef QM_STORAGE_H
 
-#define QM_TARGET_STORAGE_H
+#define QM_STORAGE_H
 
 #include <stdint.h>
 

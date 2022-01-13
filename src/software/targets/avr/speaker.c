@@ -1,32 +1,31 @@
 #include <avr/io.h>
-#include "speaker.h"
 #include "../speaker.h"
+#include "sleep.h"
 
-qm_speaker_frequency_t qm_speaker_frequency = QM_SPEAKER_FREQUENCY_MUTED;
-
-void qm_target_avr_speaker_initialize()
+void qm_speaker_mute()
 {
-  // Configure timer 0 to count from 0 to OCR0A and back down to 0, toggling OC0B (pin D5) each time it does.
-  TCCR1A = (1 << COM1A0);
-  TCCR1B = (1 << WGM12);
+  // Disconnect the timer from the CPU clock and OC1A (pin B1).
+  // TODO: REFERENCE
+  TCCR1A = 0;
+  TCCR1B = 0;
+
+  qm_avr_sleep_blocker &= ~QM_AVR_SLEEP_BLOCKER_SPEAKER;
 }
 
-void qm_target_avr_speaker_post_update()
+void qm_speaker_play(qm_frequency_t frequency)
 {
-  int frequency = (uint32_t)4000000 / qm_speaker_frequency;
+  int top = (uint32_t)4000000 / frequency;
 
-  if (frequency < 1 || frequency > 65535) {
-    // Disconnect the CPU clock from timer 1.
-      TCCR1B = (1 << WGM12);
-    // TODO: does this lower the pin?
+  if (top < 1 || top > 65535) {
+    qm_speaker_mute();
   } else {
-
-
-    // Connect timer 1 to the CPU clock.
+    // Configure timer 1 to count from 0 to OCR1A and back down to 0, toggling OC1A (pin B1) each time it does.  This is count non-prescaled CPU clocks.
+    // TODO: REFERENCE
+    TCCR1A = (1 << COM1A0);
     TCCR1B = (1 << WGM12) | (1 << CS10);
 
-// TODO: why does this need to come second
-    // TODO: calculate correctly
-    OCR1A = frequency;
+    OCR1A = top;
+
+    qm_avr_sleep_blocker |= QM_AVR_SLEEP_BLOCKER_SPEAKER;
   }
 }

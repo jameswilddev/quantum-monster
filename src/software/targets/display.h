@@ -1,47 +1,21 @@
-#ifndef QM_TARGET_DISPLAY_H
+#ifndef QM_DISPLAY_H
 
-#define QM_TARGET_DISPLAy_H
+#define QM_DISPLAY_H
 
 #include <stdint.h>
 
-/**
- * @brief The pixel data which will be shown on the display when qm_refresh() returns, sized QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8.  Each byte describes a horizontal run of 8 single-bit pixels, where the least significant bit is leftmost and the most significant bit is rightmost.  Bytes run from left to right, then top to bottom.  See qm_display_mode/QM_DISPLAY_MODE_* for details on bit to color mapping.  Initially zero-filled.  The pixel aspect ratio is 5:4 (the width of a pixel is 125% of its height).
- */
-extern uint8_t qm_display_pixels[];
+#ifndef QM_DISPLAY_WIDTH
+  #error QM_DISPLAY_WIDTH must be defined globally.
+#endif
+
+#ifndef QM_DISPLAY_HEIGHT
+  #error QM_DISPLAY_HEIGHT must be defined globally.
+#endif
 
 /**
- * @brief A mode for the display; see qm_display_mode and QM_DISPLAY_MODE_*.  Defaults to QM_DISPLAY_MODE_OFF.
+ * @brief Refreshes or powers down the display.
+ * @param pixels When NULL, the display powers down.  Otherwise, an array where each byte describes a horizontal run of 8 1-bit pixels, where the most significant bit is the leftmost and the least significant bit is the rightmost.  A set bit represents white and a cleared bit represents black.  These bytes run from left to right, then top to bottom.
  */
-typedef uint8_t qm_display_mode_t;
-
-/**
- * @brief The display is to be blanked, white.  This is similar to QM_DISPLAY_MODE_OFF in terms of appearance, but is better optimized for brief flashes to white, e.g. for effects, as the display is not powered down and therefore does not need time to re-initialize on switching to other modes.
- */
-#define QM_DISPLAY_MODE_BLANK_WHITE 0
-
-/**
- * @brief The display is to be blanked, black.
- */
-#define QM_DISPLAY_MODE_BLANK_BLACK 1
-
-/**
- * @brief The display is to display the contents of qm_display_pixels, where set bits are black and unset bits are white.
- */
-#define QM_DISPLAY_MODE_INVERTED 2
-
-/**
- * @brief The display is to display the contents of qm_display_pixels, where set bits are black and unset bits are black.
- */
-#define QM_DISPLAY_MODE_NORMAL 3
-
-/**
- * @brief The display is to be blanked, white.  This is similar to QM_DISPLAY_MODE_BLANK_WHITE in terms of appearance, but is better optimized for long periods of blanking, e.g. for sleep modes, as the display fully powers down.  It will be re-initialized on switching to any other mode.
- */
-#define QM_DISPLAY_MODE_OFF 4
-
-/**
- * @brief The current display mode.  Changes are applied after qm_refresh() returns.  The default value is QM_DISPLAY_MODE_OFF.  See QM_DISPLAY_MODE_*.
- */
-extern qm_display_mode_t qm_display_mode;
+extern void qm_display(const uint8_t pixels[QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8]);
 
 #endif

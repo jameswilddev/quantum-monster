@@ -1,5 +1,4 @@
-#include "../refresh.h"
+#include "../loop.h"
 
-void qm_refresh() {
-
+void qm_loop() {
 }
