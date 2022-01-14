@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - run: sudo apt install gcc-avr -y
+    - run: sudo apt-get install avr-libc gcc-avr -y
     - run: make
     - uses: nerdyscout/kicad-exports@v2.3
       with:
