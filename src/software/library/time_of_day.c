@@ -15,7 +15,7 @@ uint8_t qm_time_of_day_get_hours_since_midnight(qm_time_of_day_t time_of_day)
   return time_of_day / QM_TIME_OF_DAY_SECONDS_PER_MINUTE / QM_TIME_OF_DAY_MINUTES_PER_HOUR;
 }
 
-extern qm_time_of_day_t qm_time_of_day_increment_minute_of_hour(qm_time_of_day_t time_of_day)
+qm_time_of_day_t qm_time_of_day_increment_minute_of_hour(qm_time_of_day_t time_of_day)
 {
   uint8_t minute_of_hour = qm_time_of_day_get_minute_of_hour(time_of_day);
 

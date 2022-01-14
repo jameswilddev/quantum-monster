@@ -2,7 +2,7 @@
 #include <avr/io.h>
 #include "io.h"
 
-extern void qm_avr_io_initialize()
+void qm_avr_io_initialize()
 {
   uint8_t temp_DDRB = 0
     | (1 << DDB0)
