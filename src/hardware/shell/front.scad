@@ -1,116 +1,120 @@
+include <measurements/button.scad>;
 include <measurements/display.scad>;
-include <measurements/pcb.scad>;
+include <measurements/plate.scad>;
+include <measurements/print_settings.scad>;
+include <measurements/screw.scad>;
+include <calculations/button.scad>;
+include <calculations/display.scad>;
+include <calculations/overall.scad>;
+include <calculations/screw.scad>;
+include <modules/button_cap.scad>;
+include <modules/button_cutout.scad>;
+include <modules/concave_corner_cuts.scad>;
+include <modules/display_cutout.scad>;
+include <modules/display_wall.scad>;
+include <modules/display_window.scad>;
+include <modules/face_outline.scad>;
+include <modules/pcb_cutout.scad>;
+include <modules/pcb_retainer.scad>;
+include <modules/screw_hole.scad>;
+include <modules/wall_groove.scad>;
 
 difference() {
-  cube([
-    pcb_width + pcb_wall_thickness * 2 + pcb_xy_tolerance * 2,
-    pcb_height + pcb_wall_thickness * 2 + pcb_xy_tolerance * 2,
-    pcb_thickness + display_pcb_distance + display_thickness + bezel_thickness,
-  ]);
+  union() {
+    difference() {
+      union() {
+        difference() {
+          linear_extrude(plate_thickness) {
+            face_outline();
+          };
 
-  difference() {
-    translate([
-      pcb_wall_thickness,
-      pcb_wall_thickness,
-      0,
-    ]) {
-      cube([
-        pcb_width + pcb_xy_tolerance * 2,
-        pcb_height + pcb_xy_tolerance * 2,
-        pcb_thickness + display_pcb_distance + display_thickness,
-      ]);
-    };
-
-    translate([
-      pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance - display_wall_thickness,
-      pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom - display_xy_tolerance - display_wall_thickness,
-      pcb_thickness,
-    ]) {
-      cube([
-        display_width + display_xy_tolerance * 2 + display_wall_thickness * 2,
-        display_height + display_xy_tolerance * 2 + display_wall_thickness * 2,
-        display_pcb_distance + display_thickness,
-      ]);
-    };
-  };
-
-  difference() {
-    translate([
-      pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance,
-      pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom - display_xy_tolerance,
-      pcb_thickness,
-    ]) {
-      cube([
-        display_width + display_xy_tolerance * 2,
-        display_height + display_xy_tolerance * 2,
-        display_pcb_distance + display_thickness,
-      ]);
-    };
-  };
-
-  translate([
-    0,
-    0,
-    pcb_thickness + display_pcb_distance + display_thickness,
-  ]) {
-    linear_extrude(bezel_thickness) {
-      hull() {
-        translate([
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance / 2 + display_left_padding + display_radius_size - display_cutout_margin,
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom - display_xy_tolerance / 2 + display_bottom_padding + display_radius_size - display_cutout_margin,
-        ]) {
-          circle(r = display_radius_size, $fn = display_radius_sides * 4);
+          translate([0, 0, button_cap_thickness]) {
+            linear_extrude(plate_thickness - button_cap_thickness) {
+              pcb_cutout();
+            };
+          };
         };
 
-        translate([
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left + display_width + display_xy_tolerance / 2 - display_right_padding - display_radius_size + display_cutout_margin,
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom - display_xy_tolerance / 2 + display_bottom_padding + display_radius_size - display_cutout_margin,
-        ]) {
-          circle(r = display_radius_size, $fn = display_radius_sides * 4);
+        linear_extrude(display_bezel_thickness) {
+          display_cutout();
         };
+      };
 
-        translate([
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance / 2 + display_left_padding + display_radius_size - display_cutout_margin,
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom + display_height + display_xy_tolerance / 2 - display_top_padding - display_radius_size + display_cutout_margin,
-        ]) {
-          circle(r = display_radius_size, $fn = display_radius_sides * 4);
-        };
+      linear_extrude(display_bezel_thickness) {
+        display_window();
+      };
 
-        translate([
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left + display_width + display_xy_tolerance / 2 - display_right_padding - display_radius_size + display_cutout_margin,
-          pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom + display_height + display_xy_tolerance / 2 - display_top_padding - display_radius_size + display_cutout_margin,
-        ]) {
-          circle(r = display_radius_size, $fn = display_radius_sides * 4);
+      linear_extrude(button_cap_thickness) {
+        button_cutout();
+      };
+    };
+
+    linear_extrude(display_bezel_thickness + display_thickness + display_z_tolerance) {
+      display_wall();
+    };
+
+    linear_extrude(display_bezel_thickness + display_thickness + display_pcb_distance - pcb_z_tolerance) {
+      pcb_retainer();
+    };
+
+    linear_extrude(button_cap_thickness) {
+      button_cap();
+    };
+
+    translate([0, 0, button_cap_thickness - button_cap_retainer_thickness]) {
+      linear_extrude(button_cap_retainer_thickness) {
+        intersection() {
+          button_cutout();
+
+          for (location = button_locations_relative_to_pcb) {
+            translate([
+              location[0] + pcb_left,
+              location[1] + pcb_bottom,
+            ]) {
+              square([overall_width, button_cap_sprue_width], center = true);
+            };
+          };
         };
       };
     };
-  }
 
-  /*translate([
-    pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance / 2 + display_left_padding,
-    pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom - display_xy_tolerance / 2 + display_bottom_padding,
-    pcb_thickness + display_pcb_distance + display_thickness,
-  ]) {
-    cube([
-      display_width + display_xy_tolerance - display_left_padding - display_right_padding,
-      display_height + display_xy_tolerance - display_bottom_padding - display_top_padding,
-      bezel_thickness,
-    ]);
-  };*/
+    translate([0, display_bottom - display_xy_tolerance, 0]) {
+      rotate([-90, 0, 0]) {
+        linear_extrude(display_height + display_xy_tolerance* 2) {
+          polygon([
+            [
+              display_left - display_xy_tolerance,
+              - display_bezel_thickness - display_z_tolerance - display_thickness,
+            ],
+            [
+              display_left - display_xy_tolerance,
+              - display_bezel_thickness - display_z_tolerance - display_clip_thickness - display_thickness,
+            ],
+            [
+              display_left + display_clip_width - display_xy_tolerance,
+              - display_bezel_thickness - display_z_tolerance - display_clip_thickness - display_thickness,
+            ],
+          ]);
+        };
+      };
+    };
+  };
+
+  for (screw_xy_location = screw_xy_locations) {
+    translate([screw_xy_location[0], screw_xy_location[1], 0]) {
+      screw_hole(screw_head_depth, screw_head_diameter, screw_head_tolerance, screw_head_sides);
+    };
+  };
+
+  translate([0, 0, plate_thickness - wall_embed]) {
+    linear_extrude(wall_embed) {
+      wall_groove();
+    };
+  };
+
+  translate([0, 0, display_bezel_thickness]) {
+    linear_extrude(overall_depth) {
+      concave_corner_cuts();
+    };
+  };
 };
-
-  translate([
-    0,
-    pcb_wall_thickness + pcb_xy_tolerance + display_pcb_bottom - display_xy_tolerance,
-    0,
-  ]) {
-    rotate([-90, 0, 0]) {
-      linear_extrude(display_height + display_xy_tolerance * 2) {
-        polygon([
-          [pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance, -pcb_thickness - display_pcb_distance + display_z_tolerance],
-          [pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance, -pcb_thickness - display_pcb_distance + display_z_tolerance + display_clip_thickness],
-          [pcb_wall_thickness + pcb_xy_tolerance + display_pcb_left - display_xy_tolerance + display_clip_width, -pcb_thickness - display_pcb_distance + display_z_tolerance + display_clip_thickness],
-        ]);
-      };
-    };
-  };

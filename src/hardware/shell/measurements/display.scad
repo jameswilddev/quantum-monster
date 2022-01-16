@@ -42,7 +42,7 @@ display_radius_size = 2;
 /**
  * The number of sides of each corner radius of the shell's display cutout.
  */
-display_radius_sides = 36;
+display_radius_sides = 16;
 
 /**
  * The amount of margin on each side of the display's visible area, in millimeters; effectively expands the display by this amount in each direction.
@@ -82,14 +82,14 @@ display_pcb_distance = 1.1;
 /**
  * The distance between the left edge of the display's casing and the left edge of the PCB, in millimeters.
  */
-display_pcb_left = 5;
+display_pcb_left = 0.8;
 
 /**
  * The distance between the bottom edge of the display's casing and the bottom edge of the PCB, in millimeters.
  */
-display_pcb_bottom = 3.625;
+display_pcb_bottom = 0.8;
 
 /**
  * The thickness of the front bezel, in millimeters.
  */
-bezel_thickness = 1;
+display_bezel_thickness = 2;
