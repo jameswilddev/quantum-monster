@@ -35,7 +35,7 @@ button_cap_sides = 24;
 /**
  * The space between a button cap and the surrounding shell.
  */
-button_cap_gap = 0.25;
+button_cap_gap = 0.5;
 
 /**
  * The width of a sprue which holds a button cap in place.
