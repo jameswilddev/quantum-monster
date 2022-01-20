@@ -69,7 +69,7 @@ U 1 1 61D17974
 P 3250 4300
 F 0 "Y1" H 3250 4568 50  0000 C CNN
 F 1 "32.768kHz" H 3250 4477 50  0000 C CNN
-F 2 "Crystal:Crystal_C38-LF_D3.0mm_L8.0mm_Horizontal" H 3250 4300 50  0001 C CNN
+F 2 "Crystal:Crystal_C38-LF_D3.0mm_L8.0mm_Vertical" H 3250 4300 50  0001 C CNN
 F 3 "~" H 3250 4300 50  0001 C CNN
 	1    3250 4300
 	1    0    0    -1  
