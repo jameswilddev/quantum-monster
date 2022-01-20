@@ -9,13 +9,14 @@ include <calculations/overall.scad>;
 include <calculations/screw.scad>;
 include <modules/button_cap.scad>;
 include <modules/button_cutout.scad>;
-include <modules/concave_corner_cuts.scad>;
 include <modules/display_cutout.scad>;
 include <modules/display_wall.scad>;
+include <modules/display_wall_corner_cuts.scad>;
 include <modules/display_window.scad>;
 include <modules/face_outline.scad>;
 include <modules/pcb_cutout.scad>;
 include <modules/pcb_retainer.scad>;
+include <modules/pcb_retainer_corner_cuts.scad>;
 include <modules/screw_hole.scad>;
 include <modules/wall_groove.scad>;
 
@@ -50,11 +51,19 @@ difference() {
     };
 
     linear_extrude(display_bezel_thickness + display_thickness + display_z_tolerance) {
-      display_wall();
+      difference() {
+        display_wall();
+        display_wall_corner_cuts();
+        pcb_retainer_corner_cuts();
+      };
     };
 
     linear_extrude(display_bezel_thickness + display_thickness + display_pcb_distance - pcb_z_tolerance) {
-      pcb_retainer();
+      difference() {
+        pcb_retainer();
+        display_wall_corner_cuts();
+        pcb_retainer_corner_cuts();
+      };
     };
 
     linear_extrude(button_cap_thickness) {
@@ -109,12 +118,6 @@ difference() {
   translate([0, 0, plate_thickness - wall_embed]) {
     linear_extrude(wall_embed) {
       wall_groove();
-    };
-  };
-
-  translate([0, 0, display_bezel_thickness]) {
-    linear_extrude(overall_depth) {
-      concave_corner_cuts();
     };
   };
 };

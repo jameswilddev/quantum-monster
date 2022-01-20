@@ -15,3 +15,25 @@ display_bottom = pcb_bottom + display_pcb_bottom;
  * The height of the display's retaining wall, in millimeters.
  */
 display_wall_height = display_thickness; // TODO + display_z_tolerance + display_clip_thickness;
+
+/**
+ * The locations of the display retaining wall corner cuts, on the X and Y axes, in millimeters.
+ */
+display_wall_corner_cut_locations = [
+  [
+    display_left - display_xy_tolerance - display_wall_thickness / 2,
+    display_bottom - display_xy_tolerance - display_wall_thickness / 2,
+  ],
+  [
+    display_left + display_width + display_xy_tolerance + display_wall_thickness / 2,
+    display_bottom - display_xy_tolerance - display_wall_thickness / 2,
+  ],
+  [
+    display_left - display_xy_tolerance - display_wall_thickness / 2,
+    display_bottom + display_height + display_xy_tolerance + display_wall_thickness / 2,
+  ],
+  [
+    display_left + display_width + display_xy_tolerance + display_wall_thickness / 2,
+    display_bottom + display_height + display_xy_tolerance + display_wall_thickness / 2,
+  ],
+];
