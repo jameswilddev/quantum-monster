@@ -1,3 +1,4 @@
+include <../measurements/button.scad>;
 include <../measurements/display.scad>;
 include <../measurements/pcb.scad>;
 
