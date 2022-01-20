@@ -92,4 +92,4 @@ display_pcb_bottom = 0.8;
 /**
  * The thickness of the front bezel, in millimeters.
  */
-display_bezel_thickness = 2;
+display_bezel_thickness = 2.4;
