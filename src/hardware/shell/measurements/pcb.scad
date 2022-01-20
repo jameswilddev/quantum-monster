@@ -31,4 +31,4 @@ pcb_retainer_thickness = 0.6;
 /**
  * The amount of clearance behind the PCB, in millimeters.
  */
-pcb_back_clearance = 10;
+pcb_back_clearance = 5;
