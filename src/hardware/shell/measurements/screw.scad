@@ -3,12 +3,12 @@ include <pcb.scad>;
 /**
  * The diameter of the screw head, in millimeters.
  */
-screw_head_diameter = 6.2;
+screw_head_diameter = 5.6;
 
 /**
  * The tolerance around the screw head, in millimeters.
  */
-screw_head_tolerance = 0.5;
+screw_head_tolerance = 0.3;
 
 /**
  * The depth that a screw's head embeds into the shell.
@@ -38,12 +38,12 @@ screw_thread_sides = 48;
 /**
  * The diameter of the screw's nut (vertex to opposite vertex), in millimeters.
  */
-screw_nut_diameter = 5.9;
+screw_nut_diameter = 6;
 
 /**
  * The tolerance around the screw's nut, in millimeters.
  */
-screw_nut_tolerance = 0.2;
+screw_nut_tolerance = 0.3;
 
 /**
  * The number of sides of the screw's nut.
