@@ -9,7 +9,7 @@ jobs:
     - run: make
     # TODO: OpenSCAD
     # TODO: version injection
-    - uses: INTI-CMNB/KiBot@v1
+    - uses: INTI-CMNB/KiBot@v1_k6
       with:
         config: config.kibot.yaml
         schema: src/hardware/pcb/quantum_monster.kicad_sch
