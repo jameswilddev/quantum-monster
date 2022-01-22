@@ -38,7 +38,7 @@ AVR_IMAGE_O_FILES = $(IMAGE_FILES_TO_CONVERT:src/software/%=obj/avr/compiled/%.o
 all: $(TOOL_DISTRIBUTIBLES) $(AVR_DISTRIBUTABLES) $(CONVERTED_IMAGE_H_FILES) $(CONVERTED_IMAGE_C_FILES)
 
 clean:
-	rm -rf dist obj
+	rm -rf dist obj $(PREVIOUSLY_GENERATED_FILES)
 
 %.aseprite.png: %.aseprite makefile
 	aseprite --batch $< --save-as $@
