@@ -60,21 +60,6 @@ display_xy_tolerance = 0.25;
 display_wall_thickness = 0.6;
 
 /**
- * The amount of tolerance between the display's (PCB-facing) back face and the retaining clip, in millimeters.
- */
-display_z_tolerance = -0.1;
-
-/**
- * The width of the display retaining clip, in millimeters.
- */
-display_clip_width = 1.2;
-
-/**
- * The thickness of the display retaining clip, in millimeters.
- */
-display_clip_thickness = 0.8;
-
-/**
  * The distance between the display's casing (ignoring the connector) and the PCB, in millimeters.
  */
 display_pcb_distance = 2;

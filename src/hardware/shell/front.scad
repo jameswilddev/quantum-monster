@@ -50,7 +50,7 @@ difference() {
       };
     };
 
-    linear_extrude(display_bezel_thickness + display_thickness + display_z_tolerance) {
+    linear_extrude(display_bezel_thickness + display_thickness + display_pcb_distance - pcb_z_tolerance) {
       difference() {
         display_wall();
         display_wall_corner_cuts();
@@ -83,27 +83,6 @@ difference() {
               square([overall_width, button_cap_sprue_width], center = true);
             };
           };
-        };
-      };
-    };
-
-    translate([0, display_bottom - display_xy_tolerance, 0]) {
-      rotate([-90, 0, 0]) {
-        linear_extrude(display_height + display_xy_tolerance* 2) {
-          polygon([
-            [
-              display_left - display_xy_tolerance,
-              - display_bezel_thickness - display_z_tolerance - display_thickness,
-            ],
-            [
-              display_left - display_xy_tolerance,
-              - display_bezel_thickness - display_z_tolerance - display_clip_thickness - display_thickness,
-            ],
-            [
-              display_left + display_clip_width - display_xy_tolerance,
-              - display_bezel_thickness - display_z_tolerance - display_clip_thickness - display_thickness,
-            ],
-          ]);
         };
       };
     };
