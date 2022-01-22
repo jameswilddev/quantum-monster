@@ -3,6 +3,7 @@
 #define QM_SPRITE_H
 
 #include <stdint.h>
+#include "../targets/display.h"
 
 /**
  * @brief The width of a sprite, in columns.
@@ -109,7 +110,8 @@ typedef int8_t qm_sprite_y;
  * @param sprite A pointer to the sprite to draw.
  * @param x The distance between the left edge of the sprite and that of the display, in columns.
  * @param y The distance between the top edge of the sprite and that of the display, in rows.
+ * @param framebuffer The framebuffer to which to draw.  Each byte describes a horizontal run of 8 1-bit pixels, where the most significant bit is the leftmost and the least significant bit is the rightmost.  A set bit represents white and a cleared bit represents black.  These bytes run from left to right, then top to bottom.
  */
-extern void qm_sprite_draw(const qm_sprite_t * sprite, qm_sprite_x x, qm_sprite_y y);
+extern void qm_sprite_draw(const qm_sprite_t * sprite, qm_sprite_x x, qm_sprite_y y, uint8_t framebuffer[QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8]);
 
 #endif
