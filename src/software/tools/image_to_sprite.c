@@ -230,12 +230,12 @@ int main(int argc, const char ** argv) {
                             }
 
                           case QM_COLOR_TRANSPARENT | QM_COLOR_BLACK | QM_COLOR_WHITE:
-                            if (fprintf(source_file, "QM_SPRITE_ENCODING_BLACK_WHITE_AND_TRANSPARENT,") < 0) {
+                            if (fprintf(source_file, "QM_SPRITE_ENCODING_BLACK_WHITE_AND_TRANSPARENT,\n  {") < 0) {
                                 fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
                                 return 1;
                             } else {
                               for (int cropped_row = 0; cropped_row < cropped_rows; cropped_row++) {
-                                if (fprintf(source_file, "\n ") < 0) {
+                                if (fprintf(source_file, "\n   ") < 0) {
                                   fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
                                   return 1;
                                 }
@@ -306,7 +306,7 @@ int main(int argc, const char ** argv) {
                                 }
                               }
 
-                              if (fprintf(source_file, "\n};\n") < 0) {
+                              if (fprintf(source_file, "\n  },\n};\n") < 0) {
                                 fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
                                 return 1;
                               } else {
