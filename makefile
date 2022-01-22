@@ -54,6 +54,7 @@ clean:
 		< $<
 
 %.jpg.c: %.jpg.h
+	echo
 
 %.jpeg.h: %.jpeg dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -66,6 +67,7 @@ clean:
 		< $<
 
 %.jpeg.c: %.jpeg.h
+	echo
 
 %.png.h: %.png dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -78,6 +80,7 @@ clean:
 		< $<
 
 %.png.c: %.png.h
+	echo
 
 %.tga.h: %.tga dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -90,6 +93,7 @@ clean:
 		< $<
 
 %.tga.c: %.tga.h
+	echo
 
 %.bmp.h: %.bmp dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -102,6 +106,7 @@ clean:
 		< $<
 
 %.bmp.c: %.bmp.h
+	echo
 
 %.psd.h: %.psd dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -114,6 +119,7 @@ clean:
 		< $<
 
 %.psd.c: %.psd.h
+	echo
 
 %.gif.h: %.gif dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -126,6 +132,7 @@ clean:
 		< $<
 
 %.gif.c: %.gif.h
+	echo
 
 %.hdr.h: %.hdr dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -138,6 +145,7 @@ clean:
 		< $<
 
 %.hdr.c: %.hdr.h
+	echo
 
 %.pic.h: %.pic dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -150,6 +158,7 @@ clean:
 		< $<
 
 %.pic.c: %.pic.h
+	echo
 
 %.pnm.h: %.pnm dist/tools/image_to_sprite
 	./dist/tools/image_to_sprite \
@@ -162,6 +171,7 @@ clean:
 		< $<
 
 %.pnm.c: %.pnm.h
+	echo
 
 dist/tools/%: src/software/tools/%.c $(SUBMODULE_H_FILES) makefile
 	mkdir -p $(dir $@)
