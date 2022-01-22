@@ -50,6 +50,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.jpg.c: %.jpg.h
@@ -61,6 +62,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.jpeg.c: %.jpeg.h
@@ -72,6 +74,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.png.c: %.png.h
@@ -83,6 +86,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.tga.c: %.tga.h
@@ -94,6 +98,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.bmp.c: %.bmp.h
@@ -105,6 +110,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.psd.c: %.psd.h
@@ -116,6 +122,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.gif.c: %.gif.h
@@ -127,6 +134,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.hdr.c: %.hdr.h
@@ -138,6 +146,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.pic.c: %.pic.h
@@ -149,6 +158,7 @@ clean:
 		$<.c \
 		$(basename $(basename $(basename $(notdir $@)))) \
 		`echo $(basename $(basename $(basename $(notdir $@)))) | tr a-z A-Z`_H \
+		$(notdir $@) \
 		< $<
 
 %.pnm.c: %.pnm.h

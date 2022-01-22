@@ -11,8 +11,8 @@
 typedef uint8_t qm_color_t;
 
 int main(int argc, const char ** argv) {
-  if (argc != 6) {
-    fprintf(stderr, "expected 5 arguments, actual %d\n", argc - 1);
+  if (argc != 7) {
+    fprintf(stderr, "expected 6 arguments, actual %d\n", argc - 1);
     return 1;
   } else {
     const char * path_to_library_header = argv[1];
@@ -20,6 +20,7 @@ int main(int argc, const char ** argv) {
     const char * path_to_output_source = argv[3];
     const char * variable_name = argv[4];
     const char * guard_name = argv[5];
+    const char * header_name = argv[6];
 
     int uncropped_columns;
     int uncropped_rows;
@@ -183,7 +184,7 @@ int main(int argc, const char ** argv) {
                     FILE * source_file = fopen(path_to_output_source, "w");
 
                     if (source_file) {
-                      if (fprintf(source_file, "#include \"%s\"\n#include \"%s.h\"\n\nconst qm_sprite_t %s QM_STATIC_DATA = {\n  %d,\n  %d,\n  %d,\n  %d\n  ", path_to_library_header, variable_name, variable_name, cropped_columns, cropped_rows, left_transparent_columns, top_transparent_rows) < 0) {
+                      if (fprintf(source_file, "#include \"%s\"\n#include \"%s\"\n\nconst qm_sprite_t %s QM_STATIC_DATA = {\n  %d,\n  %d,\n  %d,\n  %d\n  ", path_to_library_header, header_name, variable_name, cropped_columns, cropped_rows, left_transparent_columns, top_transparent_rows) < 0) {
                           fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
                           return 1;
                       } else {
