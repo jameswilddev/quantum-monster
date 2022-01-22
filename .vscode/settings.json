@@ -9,9 +9,7 @@
   "files.eol": "\n",
   "files.exclude": {
     "**/fp-info-cache": true,
-    "**/*.sch-bak": true,
-    "**/*.kicad_pcb-bak": true,
-    "**/_autosave-*": true,
+    "**/*-backups": true,
     "dist": true,
     "obj": true,
     "**/*.aseprite.*": true,
