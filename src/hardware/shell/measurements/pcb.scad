@@ -1,12 +1,12 @@
 /**
  * The distance between the left and right edges of the PCB, in millimeters.
  */
-pcb_width = 53.68;
+pcb_width = 50.3;
 
 /**
  * The distance between the top and bottom edges of the PCB, in millimeters.
  */
-pcb_height = 39.90;
+pcb_height = 39.9;
 
 /**
  * The thickness of the PCB, in millimeters.

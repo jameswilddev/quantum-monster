@@ -2,7 +2,7 @@
 /**
  * The distance between the left and right edges of the display's casing, in millimeters.
  */
-display_width = 35.5;
+display_width = 33.3;
 
 /**
  * The distance between the top and bottom edges of the display's casing, in millimeters.
@@ -12,7 +12,7 @@ display_height = 38.3;
 /**
  * The distance between the (visible) front and (PCB-facing) back faces of the display's casing, ignoring the connector, in millimeters.
  */
-display_thickness = 1.75;
+display_thickness = 2;
 
 /**
  * The distance between the left edge of the display's casing and the left edge of its viewable area, in millimeters.
@@ -22,7 +22,7 @@ display_left_padding = 3.5;
 /**
  * The distance between the right edge of the display's casing and the right edge of its viewable area, in millimeters.
  */
-display_right_padding = 10.5;
+display_right_padding = 8.3;
 
 /**
  * The distance between the top edge of the display's casing and the left top of its viewable area, in millimeters.
@@ -77,7 +77,7 @@ display_clip_thickness = 0.8;
 /**
  * The distance between the display's casing (ignoring the connector) and the PCB, in millimeters.
  */
-display_pcb_distance = 1.1;
+display_pcb_distance = 2;
 
 /**
  * The distance between the left edge of the display's casing and the left edge of the PCB, in millimeters.
@@ -92,4 +92,4 @@ display_pcb_bottom = 0.8;
 /**
  * The thickness of the front bezel, in millimeters.
  */
-display_bezel_thickness = 2.4;
+display_bezel_thickness = 1.4;
