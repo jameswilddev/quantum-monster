@@ -13,6 +13,7 @@ void qm_avr_sleep_initialize()
 
 qm_sleep_wake_reason_t qm_sleep(qm_sleep_wake_reason_t wake_reasons, qm_time_of_day_t time_of_day, qm_milliseconds_t delay)
 {
+  // TODO: ensure display finished
   // TODO: delay
 
   set_sleep_mode(qm_avr_sleep_blocker ? SLEEP_MODE_EXT_STANDBY : SLEEP_MODE_PWR_SAVE);
