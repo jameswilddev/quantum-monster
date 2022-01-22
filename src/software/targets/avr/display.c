@@ -6,11 +6,13 @@
 
 static void qm_avr_display_wait_until_ready_for_next_byte()
 {
+  // TODO doc
   while (!(UCSR0A & (1<<UDRE0)));
 }
 
 static void qm_avr_display_wait_until_byte_fully_written()
 {
+  // TODO doc
   while (!(UCSR0A & (1<<TXC0)));
 }
 
@@ -18,6 +20,7 @@ static void qm_avr_display_start_writing_byte(uint8_t byte)
 {
   qm_avr_display_wait_until_ready_for_next_byte();
 
+  // TODO doc
   UCSR0A |= 1<<TXC0;
   UDR0 = byte;
 }
@@ -121,7 +124,9 @@ void qm_display(const uint8_t pixels[QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8])
 
     qm_avr_display_data_mode();
 
+    // TODO: would sizeof work?
     for (int i = 0; i < QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8; i++) {
+      // TODO: we need to use a different sequence here.
       uint8_t next = pixels[i];
 
       qm_avr_display_start_writing_byte(next);
