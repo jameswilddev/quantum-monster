@@ -78,3 +78,33 @@ display_pcb_bottom = 0.8;
  * The thickness of the front bezel, in millimeters.
  */
 display_bezel_thickness = 1.4;
+
+/**
+ * The height of the display's connector.
+ */
+display_connector_height = 9;
+
+/**
+ * The width of the display's connector.
+ */
+display_connector_width = 1.45;
+
+/**
+ * The tolerance around the display's connector.
+ */
+display_connector_tolerance = 0.25;
+
+/**
+ * The distance between the right edge of the display and its connector.
+ */
+display_right_connector_right = 0.8;
+
+/**
+ * The distance between the bottom edge of the display and its connector.
+ */
+display_bottom_connector_bottom = 14.65;
+
+/**
+ * The thickness of the display's spacer.
+ */
+display_spacer_thickness = 1.2;
