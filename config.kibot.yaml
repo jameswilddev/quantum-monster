@@ -1,0 +1,14 @@
+kibot:
+  version: 1
+
+preflight:
+  check_zone_fills: true
+  erc_warnings: true
+  run_drc: true
+  run_erc: true
+
+outputs:
+- type: gerber
+  dir: dist/hardware/pcb
+- type: excellon
+  dir: dist/hardware/pcb

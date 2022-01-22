@@ -9,16 +9,14 @@ jobs:
     - run: make
     # TODO: OpenSCAD
     # TODO: version injection
-    - uses: nerdyscout/kicad-exports@v2.3
+    - uses: INTI-CMNB/KiBot@v1
       with:
-        config: docs.schema.kibot.yaml compress.documentation.kibot.yaml gerbers.kibot.yaml gerbers.drills.kibot.yaml jlcpcb/bom.csv.kibot.yaml compress.fabrications.kibot.yaml boardview.kibot.yaml
-        schema: 'src/hardware/pcb/quantum_monster.sch'
-        board: 'src/hardware/pcb/quantum_monster.kicad_pcb'
+        config: config.kibot.yaml
+        schema: src/hardware/pcb/quantum_monster.kicad_sch
+        board: src/hardware/pcb/quantum_monster.kicad_pcb
     - uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: |
-          *.zip
-          dist/avr/*.hex
+        files: dist/**
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
