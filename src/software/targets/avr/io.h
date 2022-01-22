@@ -7,7 +7,7 @@
 /**
  * @brief The letter of the port through which the display's RES line is connected.
  */
-#define QM_AVR_IO_DISPLAY_RES_PORT_LETTER D
+#define QM_AVR_IO_DISPLAY_RES_PORT_LETTER C
 
 /**
  * @brief The number of the pin through which the display's RES line is connected.
@@ -29,12 +29,12 @@
 /**
  * @brief The letter of the port through which the display's DC line is connected.
  */
-#define QM_AVR_IO_DISPLAY_DC_PORT_LETTER D
+#define QM_AVR_IO_DISPLAY_DC_PORT_LETTER C
 
 /**
  * @brief The number of the pin through which the display's DC line is connected.
  */
-#define QM_AVR_IO_DISPLAY_DC_PIN_NUMBER 2
+#define QM_AVR_IO_DISPLAY_DC_PIN_NUMBER 1
 
 
 /**
@@ -67,7 +67,7 @@
 /**
  * @brief The number of the pin through which the A button is connected.
  */
-#define QM_AVR_IO_A_BUTTON_PIN_NUMBER 6
+#define QM_AVR_IO_A_BUTTON_PIN_NUMBER 0
 
 /**
  * @brief The pin change mask register of the pin through which the A button is connected.
@@ -77,7 +77,7 @@
 /**
  * @brief The PCINT number of the pin through which the A button is connected.
  */
-#define QM_AVR_IO_A_BUTTON_PCINT_NUMBER 22
+#define QM_AVR_IO_A_BUTTON_PCINT_NUMBER 2
 
 
 /**
@@ -88,7 +88,7 @@
 /**
  * @brief The number of the pin through which the B button is connected.
  */
-#define QM_AVR_IO_B_BUTTON_PIN_NUMBER 7
+#define QM_AVR_IO_B_BUTTON_PIN_NUMBER 5
 
 /**
  * @brief The pin change mask register of the pin through which the B button is connected.
@@ -98,18 +98,18 @@
 /**
  * @brief The PCINT number of the pin through which the B button is connected.
  */
-#define QM_AVR_IO_B_BUTTON_PCINT_NUMBER 23
+#define QM_AVR_IO_B_BUTTON_PCINT_NUMBER 21
 
 
 /**
  * @brief The letter of the port through which the C button is connected.
  */
-#define QM_AVR_IO_C_BUTTON_PORT_LETTER B
+#define QM_AVR_IO_C_BUTTON_PORT_LETTER D
 
 /**
  * @brief The number of the pin through which the C button is connected.
  */
-#define QM_AVR_IO_C_BUTTON_PIN_NUMBER 0
+#define QM_AVR_IO_C_BUTTON_PIN_NUMBER 7
 
 /**
  * @brief The pin change mask register of the pin through which the C button is connected.
@@ -119,7 +119,7 @@
 /**
  * @brief The PCINT number of the pin through which the C button is connected.
  */
-#define QM_AVR_IO_C_BUTTON_PCINT_NUMBER 0
+#define QM_AVR_IO_C_BUTTON_PCINT_NUMBER 23
 
 
 /**
@@ -146,12 +146,12 @@
 /**
  * @brief The letter of the port through which the infrared receiver's VCC is connected.
  */
-#define QM_AVR_IO_INFRARED_RECEIVER_VCC_PORT_LETTER C
+#define QM_AVR_IO_INFRARED_RECEIVER_VCC_PORT_LETTER D
 
 /**
  * @brief The number of the pin through which the infrared receiver's VCC is connected.
  */
-#define QM_AVR_IO_INFRARED_RECEIVER_VCC_PIN_NUMBER 4
+#define QM_AVR_IO_INFRARED_RECEIVER_VCC_PIN_NUMBER 2
 
 
 /**
