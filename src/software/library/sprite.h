@@ -40,22 +40,22 @@ typedef uint8_t qm_sprite_encoding_t;
 #define QM_SPRITE_ENCODING_WHITE 1
 
 /**
- * @brief The sprite is black and white (without transparency); data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is black and 1 is white.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are undefined.
+ * @brief The sprite is black and white (without transparency); data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is black and 1 is white; the most significant bit is leftmost and the least significant bit is rightmost.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are undefined.
  */
 #define QM_SPRITE_ENCODING_BLACK_AND_WHITE 2
 
 /**
- * @brief The sprite is black and transparent; data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is black and 1 is transparent.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are 1.
+ * @brief The sprite is black and transparent; data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is black and 1 is transparent; the most significant bit is leftmost and the least significant bit is rightmost.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are 1.
  */
 #define QM_SPRITE_ENCODING_BLACK_AND_TRANSPARENT 3
 
 /**
- * @brief The sprite is white and transparent; data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is transparent and 1 is white.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are 0.
+ * @brief The sprite is white and transparent; data is sized width * height / 8 (rounded up).  Each byte describes a horizontal run of 8 single-bit pixels, where 0 is transparent and 1 is white; the most significant bit is leftmost and the least significant bit is rightmost.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final byte on a row are 0.
  */
 #define QM_SPRITE_ENCODING_WHITE_AND_TRANSPARENT 4
 
 /**
- * @brief The sprite is black, white and transparent; data is sized 2 * width * height / 8 (rounded up).  Each pair of bytes describes two bit planes of a horizontal run of 8 pixels.  The first byte defines a mask, where 0 bits are black and 1 bits are transparent.  The second byte defines a XOR mask, where 0 bits do not invert the result, and 1 bits invert the result.  These bytes run from left to right, then top to bottom.  Where the width is not divisible by 8, the additional bits in the final bytes on a row are 0.
+ * @brief The sprite is black, white and transparent; data is sized 2 * width * height / 8 (rounded up).  Each pair of bytes describes two bit planes of a horizontal run of 8 pixels.  The first byte defines a mask, where 0 bits are black and 1 bits are transparent.  The second byte defines a XOR mask, where 0 bits do not invert the result, and 1 bits invert the result.  These bytes run from left to right, then top to bottom; the most significant bit is leftmost and the least significant bit is rightmost.  Where the width is not divisible by 8, the additional bits in the final bytes on a row are 0.
  */
 #define QM_SPRITE_ENCODING_BLACK_WHITE_AND_TRANSPARENT 5
 
