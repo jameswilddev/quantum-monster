@@ -9,6 +9,8 @@ preflight:
 
 outputs:
 - type: gerber
+  name: gerber
   dir: dist/hardware/pcb
 - type: excellon
+  name: excellon
   dir: dist/hardware/pcb
