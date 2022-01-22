@@ -18,19 +18,19 @@ pcb_bottom = wall_surround + wall_tolerance + wall_thickness + wall_tolerance + 
  */
 pcb_retainer_corner_cut_locations = [
   [
-    pcb_left - pcb_xy_tolerance - pcb_retainer_thickness / 2,
-    pcb_bottom - pcb_xy_tolerance - pcb_retainer_thickness / 2,
+    pcb_left - pcb_xy_tolerance + pcb_retainer_thickness,
+    pcb_bottom - pcb_xy_tolerance + pcb_retainer_thickness,
   ],
   [
-    pcb_left + pcb_width + pcb_xy_tolerance + pcb_retainer_thickness / 2,
-    pcb_bottom - pcb_xy_tolerance - pcb_retainer_thickness / 2,
+    pcb_left + pcb_width + pcb_xy_tolerance - pcb_retainer_thickness,
+    pcb_bottom - pcb_xy_tolerance + pcb_retainer_thickness,
   ],
   [
-    pcb_left - pcb_xy_tolerance - pcb_retainer_thickness / 2,
-    pcb_bottom + pcb_height + pcb_xy_tolerance + pcb_retainer_thickness / 2,
+    pcb_left - pcb_xy_tolerance + pcb_retainer_thickness,
+    pcb_bottom + pcb_height + pcb_xy_tolerance - pcb_retainer_thickness,
   ],
   [
-    pcb_left + pcb_width + pcb_xy_tolerance + pcb_retainer_thickness / 2,
-    pcb_bottom + pcb_height + pcb_xy_tolerance + pcb_retainer_thickness / 2,
+    pcb_left + pcb_width + pcb_xy_tolerance - pcb_retainer_thickness,
+    pcb_bottom + pcb_height + pcb_xy_tolerance - pcb_retainer_thickness,
   ],
 ];
