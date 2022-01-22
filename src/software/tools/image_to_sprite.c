@@ -206,27 +206,157 @@ int main(int argc, const char ** argv) {
                             }
 
                           case QM_COLOR_BLACK | QM_COLOR_WHITE:
-                            if (fprintf(source_file, "QM_SPRITE_ENCODING_BLACK_AND_WHITE,\n};\n") < 0) {
+                            if (fprintf(source_file, "QM_SPRITE_ENCODING_BLACK_AND_WHITE,\n  {") < 0) {
                                 fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
                                 return 1;
                             } else {
-                              return 0;
+                              for (int cropped_row = 0; cropped_row < cropped_rows; cropped_row++) {
+                                if (fprintf(source_file, "\n   ") < 0) {
+                                  fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                  return 1;
+                                }
+
+                                for (int cropped_column = 0; cropped_column < rounded_up_cropped_columns; cropped_column++) {
+                                  if (cropped_column % 8 == 0 && fprintf(source_file, " 0b") < 0) {
+                                    fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                    return 1;
+                                  } else {
+                                    int character;
+
+                                    switch (cropped_colors[cropped_column + cropped_row * rounded_up_cropped_columns]) {
+                                      case QM_COLOR_BLACK:
+                                      case QM_COLOR_TRANSPARENT:
+                                        character = '0';
+                                        break;
+
+                                      case QM_COLOR_WHITE:
+                                        character = '1';
+                                        break;
+
+                                      default:
+                                        fprintf(stderr, "unexpected color in cropped buffer\n");
+                                        return 1;
+                                    }
+
+                                    if (fputc(character, source_file) == EOF) {
+                                      fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                      return 1;
+                                    } else if (cropped_column % 8 == 7 && fputc(',', source_file) == EOF) {
+                                      fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                      return 1;
+                                    }
+                                  }
+                                }
+                              }
+
+                              if (fprintf(source_file, "\n  },\n};\n") < 0) {
+                                fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                return 1;
+                              } else {
+                                return 0;
+                              }
                             }
 
                           case QM_COLOR_BLACK | QM_COLOR_TRANSPARENT:
-                            if (fprintf(source_file, "QM_SPRITE_ENCODING_BLACK_AND_TRANSPARENT,\n};\n") < 0) {
+                            if (fprintf(source_file, "QM_SPRITE_ENCODING_BLACK_AND_TRANSPARENT,\n  {") < 0) {
                                 fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
                                 return 1;
                             } else {
-                              return 0;
+                              for (int cropped_row = 0; cropped_row < cropped_rows; cropped_row++) {
+                                if (fprintf(source_file, "\n   ") < 0) {
+                                  fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                  return 1;
+                                }
+
+                                for (int cropped_column = 0; cropped_column < rounded_up_cropped_columns; cropped_column++) {
+                                  if (cropped_column % 8 == 0 && fprintf(source_file, " 0b") < 0) {
+                                    fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                    return 1;
+                                  } else {
+                                    int character;
+
+                                    switch (cropped_colors[cropped_column + cropped_row * rounded_up_cropped_columns]) {
+                                      case QM_COLOR_BLACK:
+                                        character = '0';
+                                        break;
+
+                                      case QM_COLOR_TRANSPARENT:
+                                        character = '1';
+                                        break;
+
+                                      default:
+                                        fprintf(stderr, "unexpected color in cropped buffer\n");
+                                        return 1;
+                                    }
+
+                                    if (fputc(character, source_file) == EOF) {
+                                      fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                      return 1;
+                                    } else if (cropped_column % 8 == 7 && fputc(',', source_file) == EOF) {
+                                      fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                      return 1;
+                                    }
+                                  }
+                                }
+                              }
+
+                              if (fprintf(source_file, "\n  },\n};\n") < 0) {
+                                fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                return 1;
+                              } else {
+                                return 0;
+                              }
                             }
 
                           case QM_COLOR_WHITE | QM_COLOR_TRANSPARENT:
-                            if (fprintf(source_file, "QM_SPRITE_ENCODING_WHITE_AND_TRANSPARENT,\n};\n") < 0) {
+                            if (fprintf(source_file, "QM_SPRITE_ENCODING_WHITE_AND_TRANSPARENT,\n  {") < 0) {
                                 fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
                                 return 1;
                             } else {
-                              return 0;
+                              for (int cropped_row = 0; cropped_row < cropped_rows; cropped_row++) {
+                                if (fprintf(source_file, "\n   ") < 0) {
+                                  fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                  return 1;
+                                }
+
+                                for (int cropped_column = 0; cropped_column < rounded_up_cropped_columns; cropped_column++) {
+                                  if (cropped_column % 8 == 0 && fprintf(source_file, " 0b") < 0) {
+                                    fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                    return 1;
+                                  } else {
+                                    int character;
+
+                                    switch (cropped_colors[cropped_column + cropped_row * rounded_up_cropped_columns]) {
+                                      case QM_COLOR_TRANSPARENT:
+                                        character = '0';
+                                        break;
+
+                                      case QM_COLOR_WHITE:
+                                        character = '1';
+                                        break;
+
+                                      default:
+                                        fprintf(stderr, "unexpected color in cropped buffer\n");
+                                        return 1;
+                                    }
+
+                                    if (fputc(character, source_file) == EOF) {
+                                      fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                      return 1;
+                                    } else if (cropped_column % 8 == 7 && fputc(',', source_file) == EOF) {
+                                      fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                      return 1;
+                                    }
+                                  }
+                                }
+                              }
+
+                              if (fprintf(source_file, "\n  },\n};\n") < 0) {
+                                fprintf(stderr, "failed to write to %s; error no %d\n", path_to_output_source, ferror(source_file));
+                                return 1;
+                              } else {
+                                return 0;
+                              }
                             }
 
                           case QM_COLOR_TRANSPARENT | QM_COLOR_BLACK | QM_COLOR_WHITE:
