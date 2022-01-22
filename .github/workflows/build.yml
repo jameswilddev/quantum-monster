@@ -8,6 +8,7 @@ jobs:
       with:
         submodules: true
     - run: sudo apt-get install avr-libc gcc-avr -y
+    - uses: neomura/setup-aseprite-cli-action@v1.0.3
     - run: make
     # TODO: OpenSCAD
     # TODO: version injection
