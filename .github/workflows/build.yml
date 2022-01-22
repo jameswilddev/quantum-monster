@@ -7,6 +7,8 @@ jobs:
     - uses: actions/checkout@v2
     - run: sudo apt-get install avr-libc gcc-avr -y
     - run: make
+    # TODO: OpenSCAD
+    # TODO: version injection
     - uses: nerdyscout/kicad-exports@v2.3
       with:
         config: docs.schema.kibot.yaml compress.documentation.kibot.yaml gerbers.kibot.yaml gerbers.drills.kibot.yaml jlcpcb/bom.csv.kibot.yaml compress.fabrications.kibot.yaml boardview.kibot.yaml
