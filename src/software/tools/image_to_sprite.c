@@ -69,7 +69,7 @@ int main(int argc, const char ** argv) {
 
         int cropped_columns = uncropped_columns - left_transparent_columns - right_transparent_columns;
 
-        int rounded_up_cropped_columns = cropped_columns - (cropped_columns % 8) + 8;
+        int rounded_up_cropped_columns = cropped_columns % 8 == 0 ? cropped_columns : cropped_columns - (cropped_columns % 8) + 8;
 
         if (rounded_up_cropped_columns > 255) {
           fprintf(stderr, "the cropped area is %d columns wide when rounded up to the nearest 8 columns (the limit being 255)\n", cropped_columns);
