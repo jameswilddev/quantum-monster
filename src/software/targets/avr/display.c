@@ -59,7 +59,7 @@ static void qm_avr_display_power_up() {
   qm_avr_display_start_writing_byte(0b11000010);
 
   // Return to the standard instruction set.
-  qm_avr_display_start_writing_byte(0b00100010);
+  qm_avr_display_start_writing_byte(0b00100000);
 
   // Enter "inverted" mode; 0 = black, 1 = white.
   qm_avr_display_start_writing_byte(0b00001101);
@@ -124,12 +124,13 @@ void qm_display(const uint8_t pixels[QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8])
 
     qm_avr_display_data_mode();
 
-    // TODO: would sizeof work?
-    for (int i = 0; i < QM_DISPLAY_WIDTH * QM_DISPLAY_HEIGHT / 8; i++) {
-      // TODO: we need to use a different sequence here.
-      uint8_t next = pixels[i];
-
-      qm_avr_display_start_writing_byte(next);
+    // Each byte of the display's RAM represents a 1x8 column of 1-bit pixels, where the most significant bit is the bottommost and least significant bit is the topmost, bytes running from left to right, then top to bottom.  As the display has been rotated 90 degrees clockwise, they instead represent a 1x8 row of 1-bit pixels, where the most significant bit is the leftmost and least significant bit is the rightmost, bytes running from top to bottom, then right to left (PCD8544 datasheet, Table 6 Programming example):
+    // https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia5110.pdf
+    for (uint8_t column = QM_DISPLAY_WIDTH / 8 - 1; column < 255; column--) {
+      for (uint8_t row = 0; row < QM_DISPLAY_HEIGHT; row++) {
+        uint8_t next = pixels[column + row * QM_DISPLAY_WIDTH / 8];
+        qm_avr_display_start_writing_byte(next);
+      }
     }
   }
 }
