@@ -26,7 +26,7 @@ LIBRARY_C_FILES = $(filter-out $(PREVIOUSLY_GENERATED_FILES),$(shell find src/so
 TARGET_H_FILES = $(filter-out $(PREVIOUSLY_GENERATED_FILES),$(shell find src/software/targets -name "*.h"))
 
 AVR_CC = avr-gcc
-AVR_CFLAGS = -Wall -O2 -mmcu=atmega328p -D'QM_STATIC_DATA=__attribute__((__progmem__))' -DQM_DISPLAY_WIDTH=48 -DQM_DISPLAY_HEIGHT=84
+AVR_CFLAGS = -Wall -O2 -mmcu=atmega328p -D'QM_STATIC_DATA=__attribute__((__progmem__))' -DQM_DISPLAY_WIDTH=48 -DQM_DISPLAY_HEIGHT=84 -DQM_STATIC_DATA_ADDRESS_TYPE='const void *'
 AVR_LDFLAGS =
 AVR_DISTRIBUTABLES = $(addsuffix .hex,$(addprefix dist/avr/,$(APPLICATION_NAMES)))
 AVR_C_FILES = $(filter-out $(PREVIOUSLY_GENERATED_FILES),$(shell find src/software/targets/avr -name "*.c"))
