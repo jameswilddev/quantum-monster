@@ -4,7 +4,7 @@
 
 #include <stdint.h>
 #include "../library/time_of_day.h"
-#include "../library/milliseconds.h"
+#include "../library/delay.h"
 
 /**
  * @brief A bit field, where each bit represents a reason that sleep may be interrupted; see QM_SLEEP_WAKE_REASON_*.
@@ -68,6 +68,6 @@ typedef uint16_t qm_sleep_wake_reason_t;
  * @param delay When configured as a wake reason, the number of milliseconds to delay until wake.
  * @return qm_sleep_wake_reason_t The reason(s) that sleep was interrupted.
  */
-extern qm_sleep_wake_reason_t qm_sleep(qm_sleep_wake_reason_t wake_reasons, qm_time_of_day_t time_of_day, qm_milliseconds_t delay);
+extern qm_sleep_wake_reason_t qm_sleep(qm_sleep_wake_reason_t wake_reasons, qm_time_of_day_t time_of_day, qm_delay_t delay);
 
 #endif

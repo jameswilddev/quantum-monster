@@ -11,7 +11,7 @@ void qm_avr_sleep_initialize()
   sleep_enable();
 }
 
-qm_sleep_wake_reason_t qm_sleep(qm_sleep_wake_reason_t wake_reasons, qm_time_of_day_t time_of_day, qm_milliseconds_t delay)
+qm_sleep_wake_reason_t qm_sleep(qm_sleep_wake_reason_t wake_reasons, qm_time_of_day_t time_of_day, qm_delay_t delay)
 {
   // TODO: ensure display finished
   // TODO: delay
