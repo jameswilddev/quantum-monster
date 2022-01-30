@@ -44,22 +44,22 @@ typedef uint16_t qm_sleep_wake_reason_t;
 /**
  * @brief Wake as the infrared transciever has received a 0 bit.  Behavior is undefined if the infrared receiver is powered down.
  */
-#define QM_WAKE_INFRARED_0_BIT 64
+#define QM_SLEEP_WAKE_REASON_INFRARED_0_BIT 64
 
 /**
  * @brief Wake as the infrared transciever has received a 1 bit.  Behavior is undefined if the infrared receiver is powered down.
  */
-#define QM_WAKE_INFRARED_1_BIT 128
+#define QM_SLEEP_WAKE_REASON_INFRARED_1_BIT 128
 
 /**
  * @brief Wake as a specific time of day has arrived.
  */
-#define QM_SLEEP_REASON_TIME_OF_DAY 256
+#define QM_SLEEP_WAKE_REASON_TIME_OF_DAY 256
 
 /**
  * @brief Wake as a number of milliseconds have passed.
  */
-#define QM_SLEEP_REASON_DELAY 512
+#define QM_SLEEP_WAKE_REASON_DELAY 512
 
 /**
  * @brief Sleep until one or more event(s) occur.
