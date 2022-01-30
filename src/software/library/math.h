@@ -8,7 +8,7 @@
  * @param b The second value to compare.
  * @return T The lesser of the given arguments.
  */
-#define QM_MIN(a, b) ((b) < (a) ? (b) : (a))
+#define QM_MATH_MIN(a, b) ((b) < (a) ? (b) : (a))
 
 /**
  * @brief Returns the greater of its arguments.
@@ -16,6 +16,6 @@
  * @param b The second value to compare.
  * @return T The greater of the given arguments.
  */
-#define QM_MAX(a, b) ((a) > (b) ? (a) : (b))
+#define QM_MATH_MAX(a, b) ((a) > (b) ? (a) : (b))
 
 #endif
