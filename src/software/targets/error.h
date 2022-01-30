@@ -6,6 +6,6 @@
  * @brief Stops the application as a critical error has occurred.
  * @param message A description of the critical error.
  */
-extern void qm_error(const char * message);
+extern void qm_error(const char * message) __attribute__((noreturn));
 
 #endif
