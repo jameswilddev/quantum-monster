@@ -10,7 +10,7 @@ button_locations_relative_to_pcb = [
 /**
  * The distance between the surface of the PCB and the top of a button, in millimeters.
  */
-button_height = 4.375;
+button_height = 4.2;
 
 /**
  * The number of sides of the stem atop the button.
@@ -35,12 +35,12 @@ button_cap_sides = 24;
 /**
  * The space between a button cap and the surrounding shell.
  */
-button_cap_gap = 0.5;
+button_cap_gap = 0.9;
 
 /**
  * The width of a sprue which holds a button cap in place.
  */
-button_cap_sprue_width = 1.2;
+button_cap_sprue_width = 0.8;
 
 /**
  * The thickness of a sprue which holds a button cap in place.
