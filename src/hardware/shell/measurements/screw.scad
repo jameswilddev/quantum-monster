@@ -13,7 +13,7 @@ screw_head_tolerance = 0.3;
 /**
  * The depth that a screw's head embeds into the shell.
  */
-screw_head_depth = 1.2;
+screw_head_depth = 1.6;
 
 /**
  * The number of sides of the screw's head.
@@ -53,7 +53,7 @@ screw_nut_sides = 6;
 /**
  * The depth that a screw's nut embeds into the shell.
  */
-screw_nut_depth = 1.2;
+screw_nut_depth = 2;
 
 /**
  * The number of millimeters between the left or right edge of the device and the center of a screw.
