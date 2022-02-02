@@ -1,4 +1,4 @@
 /**
  * The thickness of the front and back plates, in millimeters.
  */
-plate_thickness = 2.4;
+plate_thickness = 3.6;
