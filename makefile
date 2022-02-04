@@ -35,7 +35,17 @@ AVR_LIBRARY_O_FILES = $(LIBRARY_C_FILES:src/software/%.c=obj/avr/compiled/%.o)
 AVR_APPLICATION_O_FILES = $(APPLICATION_C_FILES:src/software/%.c=obj/avr/compiled/%.o)
 AVR_IMAGE_O_FILES = $(IMAGE_FILES_TO_CONVERT:src/software/%=obj/avr/compiled/%.o)
 
-all: $(TOOL_DISTRIBUTIBLES) $(AVR_DISTRIBUTABLES) $(CONVERTED_IMAGE_H_FILES) $(CONVERTED_IMAGE_C_FILES)
+WINDOWS_CC = x86_64-w64-mingw32-gcc
+WINDOWS_CFLAGS = -Wall -O2 -DQM_STATIC_DATA= -DQM_DISPLAY_WIDTH=48 -DQM_DISPLAY_HEIGHT=84 -DQM_STATIC_DATA_ADDRESS_TYPE='const void *'
+WINDOWS_LDFLAGS = -lgdi32 -lwinmm -mwindows
+WINDOWS_DISTRIBUTABLES = $(addsuffix .exe,$(addprefix dist/windows/,$(APPLICATION_NAMES)))
+WINDOWS_C_FILES = $(filter-out $(PREVIOUSLY_GENERATED_FILES),$(shell find src/software/targets/windows -name "*.c"))
+WINDOWS_TARGET_O_FILES = $(WINDOWS_C_FILES:src/software/%.c=obj/windows/%.o)
+WINDOWS_LIBRARY_O_FILES = $(LIBRARY_C_FILES:src/software/%.c=obj/windows/%.o)
+WINDOWS_APPLICATION_O_FILES = $(APPLICATION_C_FILES:src/software/%.c=obj/windows/%.o)
+WINDOWS_IMAGE_O_FILES = $(IMAGE_FILES_TO_CONVERT:src/software/%=obj/windows/%.o)
+
+all: $(TOOL_DISTRIBUTIBLES) $(AVR_DISTRIBUTABLES) $(AVR_TARGET_O_FILES) $(AVR_LIBRARY_O_FILES) $(AVR_APPLICATION_O_FILES) $(AVR_IMAGE_O_FILES) $(WINDOWS_DISTRIBUTABLES) $(WINDOWS_TARGET_O_FILES) $(WINDOWS_LIBRARY_O_FILES) $(WINDOWS_APPLICATION_O_FILES) $(WINDOWS_IMAGE_O_FILES) $(CONVERTED_IMAGE_H_FILES) $(CONVERTED_IMAGE_C_FILES)
 
 clean:
 	rm -rf dist obj $(PREVIOUSLY_GENERATED_FILES)
@@ -192,3 +202,13 @@ dist/avr/%.hex: obj/avr/linked/%.out
 	mkdir -p $(dir $@)
 	rm -f $@
 	avr-objcopy -O ihex $< $@
+
+obj/windows/%.o: src/software/%.c $(APPLICATION_H_FILES) $(LIBRARY_H_FILES) $(TARGET_H_FILES) makefile
+	mkdir -p $(dir $@)
+	rm -f $@
+	$(WINDOWS_CC) -c $(WINDOWS_CFLAGS) $< -o $@
+
+dist/windows/%.exe: $(WINDOWS_TARGET_O_FILES) $(WINDOWS_LIBRARY_O_FILES) $(WINDOWS_APPLICATION_O_FILES) $(WINDOWS_IMAGE_O_FILES)
+	mkdir -p $(dir $@)
+	rm -f $@
+	$(WINDOWS_CC) $(WINDOWS_CFLAGS) $(WINDOWS_TARGET_O_FILES) $(WINDOWS_LIBRARY_O_FILES) $(filter obj/windows/applications/$*/%,$(WINDOWS_APPLICATION_O_FILES)) $(filter obj/windows/applications/$*/%,$(WINDOWS_IMAGE_O_FILES)) -o $@ $(WINDOWS_LDFLAGS)
